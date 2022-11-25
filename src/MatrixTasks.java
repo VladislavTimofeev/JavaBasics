@@ -8,23 +8,39 @@ public class MatrixTasks {
          * единиц равно номеру столбца.
          *
          */
-
         int[][] arrays = new int[m][n];
-        for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
             int count = 0;
-            for (int j = 0; j < n; j++) {
-                if (i >= count) {
+            for (int i = 0; i < m; i++) {
+                if (j >= count) {
                     arrays[i][j] = 1;
                     count++;
                 } else {
                     arrays[i][j] = 0;
                 }
             }
-            for (int j = 0; j < arrays[i].length; j++) {
-                System.out.print(arrays[i][j] + " ");
-            }
-            System.out.println();
+//            for (int j = 0; j < arrays[i].length; j++) {
+//                System.out.print(arrays[i][j] + " ");
+//            }
+//            System.out.println();
         }
+
+//        int[][] arrays = new int[m][n];
+//        for (int i = 0; i < m; i++) {
+//            int count = 0;
+//            for (int j = 0; j < n; j++) {
+//                if (i >= count) {
+//                    arrays[i][j] = 1;
+//                    count++;
+//                } else {
+//                    arrays[i][j] = 0;
+//                }
+//            }
+//            for (int j = 0; j < arrays[i].length; j++) {
+//                System.out.print(arrays[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
 
     }
 
