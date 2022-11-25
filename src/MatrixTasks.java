@@ -2,6 +2,198 @@ import java.util.Arrays;
 
 public class MatrixTasks {
 
+    public static void createMatrixByZeroAndOne(int m, int n) {
+        /**
+         * Сформировать случайную матрицу m x n, состоящую из нулей и единиц, причем в каждом столбце число
+         * единиц равно номеру столбца.
+         *
+         */
+
+        int[][] arrays = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            int count = 0;
+            for (int j = 0; j < n; j++) {
+                if (i >= count) {
+                    arrays[i][j] = 1;
+                    count++;
+                } else {
+                    arrays[i][j] = 0;
+                }
+            }
+            for (int j = 0; j < arrays[i].length; j++) {
+                System.out.print(arrays[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+    }
+
+    public static void findNumberLine(int[][] arrays) {
+
+        for (int i = 0; i < arrays.length; i++) {
+            int count = 0;
+            for (int j = 0; j < arrays[i].length; j++) {
+                if (arrays[i][j] == 5) {
+                    count++;
+                }
+            }
+            if (count >= 3) {
+                System.out.println("Номер строки, в торой 5 встречается 3 и более раз : " + (++i));
+            }
+        }
+    }
+
+    public static int[][] createRandomMatrix() {
+        /**
+         * Матрицу 10x20 заполнить случайными числами от 0 до 15. Вывести на экран саму матрицу и номера строк, в
+         * которых число 5 встречается три и более раз.
+         *
+         * Матрицу 10x20 заполнить случайными числами от 0 до 15. Вывести на экран саму матрицу
+         * номера строк, в которых число 5 встречается три и более раз.
+         */
+
+        int[][] arrays = new int[10][20];
+        int a = 0;
+        int b = 15;
+        for (int i = 0; i < arrays.length; i++) {
+            for (int j = 0; j < arrays[i].length; j++) {
+                arrays[i][j] = ((int) (Math.random() * b));
+            }
+            for (int j = 0; j < arrays[i].length; j++) {
+                System.out.print(arrays[i][j] + " ");
+            }
+            System.out.println();
+        }
+        return arrays;
+    }
+
+
+    public static void findPositiveElementsMainDiagonal(int[][] arrays) {
+        /**
+         * Найти положительные элементы главной диагонали квадратной матрицы.
+         */
+
+        for (int i = 0; i < arrays.length; i++) {
+            if (arrays[i][i] > 0)
+                System.out.println(arrays[i][i]);
+        }
+    }
+
+
+    public static void findMaxSumInColumn(int[][] arrays) {
+
+        /**
+         * Задана матрица неотрицательных чисел. Посчитать сумму элементов в каждом столбце. Определить, какой
+         * столбец содержит максимальную сумму.
+         *                        {{1, 2, 3, 4, 5},
+         *                         {6, 7, 8, 9, 8},
+         *                         {1, 2, 3, 4, 5},
+         *                         {4, 5, 9, 1, 0},
+         *                         {5, 6, 0, 1, 8}};
+         * Найти сумму элементов в каждом столбце
+         * Найти макс сумму среди столбцов
+         * matrix[0][0]      matrix[0][1]
+         * matrix[1][0]      matrix[1][1]
+         * matrix[2][0]      matrix[2][1]
+         * matrix[3][0]      matrix[3][1]
+         * matrix[4][0]      matrix[4][1]
+         */
+
+        int[] sumColumn = new int[arrays.length];
+        int index = 0;
+
+        for (int i = 0; i < arrays.length; i++) {
+            for (int j = 0; j < arrays[i].length; j++) {
+                int sum = Math.abs(arrays[j][i]);
+                sumColumn[i] += sum;
+            }
+        }
+        for (int i = 0; i < sumColumn.length; i++) {
+            System.out.println("Сумма элементов столбца " + (i + 1) + " : " + sumColumn[i]);
+        }
+        int max = 0;
+        for (int i = 0; i < sumColumn.length; i++) {
+            if (sumColumn[i] > max)
+                max = sumColumn[i];
+        }
+        System.out.println("MAX: " + max);
+    }
+
+    public static void replaceColumnsInMatrix(int[][] matrix, int columnOne, int columnTwo) {
+        /**
+         * В числовой матрице поменять местами два любых столбца, т. е. все элементы одного столбца поставить
+         * на соответствующие им позиции другого, а его элементы второго переместить в первый. Номера столбцов вводит
+         * пользователь с клавиатуры.
+         *                        {{1, 2, 3, 4, 5}, после выполнения программы            2 1 3 4 5
+         *                         {6, 7, 8, 9, 8}, матрица должна иметь след вид ---     7 6 8 9 8
+         *                         {1, 2, 3, 4, 5},                                       2 1 3 4 5
+         *                         {4, 5, 9, 1, 0},                                       5 4 9 1 0
+         *                         {5, 6, 0, 1, 8}};                                      6 5 0 1 8
+         *   matrix[0][columnOne] = 1   -   matrix[0][columnTwo] = 2
+         *   matrix[1][columnOne] = 6   -   matrix[1][columnTwo] = 7
+         *   matrix[2][columnOne] = 1   -   matrix[2][columnTwo] = 2
+         *   matrix[3][columnOne] = 4   -   matrix[3][columnTwo] = 5
+         *   matrix[4][columnOne] = 5   -   matrix[4][columnTwo] = 6
+         *
+         *   int temp = matrix[i][columnOne];
+         *   matrix[i][columnOne] = matrix[i][columnTwo];
+         *   matrix[i][columnTwo] = temp;
+         *
+         */
+
+        for (int i = 0; i < matrix.length; i++) {
+            int temp = matrix[i][columnOne];
+            matrix[i][columnOne] = matrix[i][columnTwo];
+            matrix[i][columnTwo] = temp;
+        }
+    }
+
+
+    public static int[][] createMatrixBySecondCondition(int n) {
+        /**
+         * Сформировать квадратную матрицу порядка n по заданному образцу(n - четное):
+         *
+         * 1 1 1 1 1 1
+         * 0 1 1 1 1 0
+         * 0 0 1 1 0 0
+         * 0 0 1 1 0 0
+         * 0 1 1 1 1 0
+         * 1 1 1 1 1 1
+         *
+         */
+        int[][] matrix = new int[n][n];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = i; j < matrix[i].length - i; j++) {
+                matrix[i][j] = 1;
+                matrix[matrix.length - i - 1][j] = 1;
+            }
+        }
+        return matrix;
+
+    }
+
+    public static int[][] createMatrixByCondition(int n) {
+        /**
+         * Сформировать квадратную матрицу порядка n по заданному образцу(n - четное):
+         *
+         * 1 1 1 1 1 1
+         * 2 2 2 2 2 0
+         * 3 3 3 3 0 0
+         * 4 4 4 0 0 0
+         * 5 5 0 0 0 0
+         * 6 0 0 0 0 0
+         */
+        int[][] matrix = new int[n][n];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length - i; j++) {
+                matrix[i][j] = i + 1;
+            }
+        }
+        return matrix;
+    }
+
     public static int[][] createMatrixN(int n) {
 
         /**
@@ -10,7 +202,6 @@ public class MatrixTasks {
         int[][] matrix = new int[n][n];
 
         for (int i = 0; i < n; i++) {
-
             if (i % 2 == 0) {
                 for (int j = 0; j < n; j++) {
                     matrix[i][j] = j + 1;
@@ -114,7 +305,7 @@ public class MatrixTasks {
 
     public static void printOddStringIfFirstElementMoreThanLast(int[][] matrix) {
         /**
-         * 1. Дана матрица. Вывести на экран все нечетные строки, у которых первый элемент больше последнего.
+         * Дана матрица. Вывести на экран все нечетные строки, у которых первый элемент больше последнего.
          */
         for (int i = 0; i < matrix.length; i++) {
             if (i % 2 != 0 && matrix[i][0] > matrix[i][matrix.length - 1]) {
@@ -122,36 +313,5 @@ public class MatrixTasks {
             }
         }
     }
-
-    public static void conversation() {
-        byte b;
-        int i = 257;
-        double d = 323.142;
-
-        System.out.println("\nПpeoбpaзoвaниe типа int в тип byte.");
-        b = (byte) i;
-        System.out.println("i и b " + i + " " + b);
-
-        System.out.println("\nПpeoбpaзoвaниe типа double в тип int.");
-        i = (int) d;
-        System.out.println("d и i " + d + " " + i);
-
-        System.out.println("\nПpeoбpaзoвaниe типа double в тип byte.");
-        b = (byte) d;
-        System.out.println("d и b " + d + " " + b);
-    }
-
-    /**
-     * Чтобы перевести двоичную систему в десятиричную надо:
-     * на места 1 поставить 2 в степени позиции 1(единицы) считая с конца(отсчет с нуля) и все сложить
-     *
-     * 0000 = 0+0+0+0
-     * 0001 = 0+0+0+2^0
-     * 0010 = 0+0+2^1+0
-     * 0011 = 0+0+2^1+2^0
-     * 1101 = 2^3+2^2+0+2^0 = 8+4+1=13
-     * 1110 = 2^3+2^2+2^1+0 = 8+4+2=14
-     *
-     * 101010110 = 2^8+0+2^6+0+2^4+0+2^2+2^1+0= 256 + 64 + 16 + 4 + 2 = 342
-     */
 }
+
