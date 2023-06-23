@@ -32,23 +32,23 @@ package com.tasks.lesson1;
  */
 public class Circle {
 
-    double radius;
-    final double pi = 3.14;
+    private final double radius;
+    private final double pi = 3.14;
 
 
-    Circle(double radius) {
+    public Circle(double radius) {
         this.radius = radius;
     }
 
-    double getArea() {
+    public double getArea() {
         return pi * (radius * radius);
     }
 
-    double getCircumference() {
+    public double getCircumference() {
         return 2 * pi * radius;
     }
 
-    boolean isBig() {
+    public boolean isBig() {
         return radius > 10;
     }
 

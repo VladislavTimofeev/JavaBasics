@@ -31,23 +31,23 @@ package com.tasks.lesson1;
 
 public class Rectangle {
 
-    double length;
-    double width;
+    private final double length;
+    private final double width;
 
-    Rectangle(double length, double width) {
+    public Rectangle(double length, double width) {
         this.length = length;
         this.width = width;
     }
 
-    double getArea() {
+    public double getArea() {
         return length * width;
     }
 
-    double getPerimeter() {
+    public double getPerimeter() {
         return 2 * (length + width);
     }
 
-    boolean isSquare() {
+    public boolean isSquare() {
         return length == width;
     }
 
