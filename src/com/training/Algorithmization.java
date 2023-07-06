@@ -1,3 +1,5 @@
+package com.training;
+
 import java.util.Arrays;
 
 public class Algorithmization {
