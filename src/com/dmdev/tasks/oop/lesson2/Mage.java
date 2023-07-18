@@ -1,6 +1,8 @@
 package com.dmdev.tasks.oop.lesson2;
 
-public class Mage extends Hero {
+import com.dmdev.tasks.lesson4.weapon.MagicWeapon;
+
+public class Mage<T extends MagicWeapon> extends Hero<T> {
     public Mage(String name, int damage) {
         super(name, damage);
     }
