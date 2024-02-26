@@ -10,5 +10,6 @@ public class Student {
     private String name;
     private int groupNumber;
     private int[] progress = new int[5];
+    private int[] progress2 = new int[10];
 
 }
